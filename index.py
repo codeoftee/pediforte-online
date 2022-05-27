@@ -11,3 +11,4 @@ def home_page():
 @app.route('/sign_up')
 def sign_up():
 	return "SIGN_UP PAGE"
+	
