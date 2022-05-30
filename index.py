@@ -7,8 +7,7 @@ app = Flask(__name__)
 def home_page():
 	return "Hello world"
 
-	
-@app.route('/sign_up')
-def sign_up():
-	return "SIGN_UP PAGE"
-	
+
+@app.route('/login')
+def login():
+	return "login"
