@@ -1,0 +1,13 @@
+# add files that shouldn't be uploaded to git here
+
+.idea/
+venv/
+logs/
+__pycache__/
+.vscode/
+.workspace/
+migrations/
+.senv
+*.log
+*.DS_Store
+*.db
