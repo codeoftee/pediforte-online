@@ -3,7 +3,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from base import db, login
-from base.function_pool import get_time
+from toolz.clocks import get_time
 from passlib.apps import custom_app_context as pwd_context
 
 from config import Config
