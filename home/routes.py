@@ -6,7 +6,7 @@ def home_page():
     return "Hello world"
 
 
-@home.route('/sign_up')
+@home.route('/sign-up')
 def sign_up():
     return "sign up"
 
