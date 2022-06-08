@@ -7,6 +7,7 @@ def home_page():
 
 
 @home.route('/sign-up')
+<<<<<<< HEAD
 def sign-up():
     return render_template('sign-up.html')  
 
@@ -26,6 +27,10 @@ def do_signup():
         flash('Password does not match')
         return redirect(url_for('register_page'))
     password_hash = hashlib.sha256(password.encode()).hexdigest()
+=======
+def sign_up():
+    return "sign up"
+>>>>>>> e02b4b4ec4188a33d2c06a87d35bed13fd0c8cf8
 
 
 @home.route('/login')
