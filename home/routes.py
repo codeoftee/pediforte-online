@@ -1,7 +1,8 @@
 from . import home
 from flask import render_template, request, flash, redirect, url_for
-
-
+from toolz.validators import is_valid_email
+from .models import User
+import hashlib
 
 @home.route('/')
 def home_page():
@@ -27,6 +28,10 @@ def do_sign_up():
         return redirect(url_for('sign_up'))
     password_hash = hashlib.sha256(password.encode()).hexdigest()
 
+    user_exist = User.query.filter_by(username=username).first()
+    if user_exist is not None:
+        flash('Username already exists')
+        return redirect(url_for('sign_up'))
     
 
 
