@@ -1,7 +1,8 @@
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from base import db
+from base import db, login
 from base.function_pool import get_time
 from passlib.apps import custom_app_context as pwd_context
 
@@ -14,6 +15,11 @@ class Billing(db.Model):
     uid = db.Column(db.Integer, index=True)
 
 
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
@@ -24,6 +30,12 @@ class User(UserMixin, db.Model):
     ip = db.Column(db.String(30))
     created = db.Column(db.String(20), default=get_time())
     active = db.Column(db.SMALLINT, default=1)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
