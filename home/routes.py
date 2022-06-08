@@ -22,17 +22,17 @@ def do_sign_up():
     password2 = request.form['password2']
     if  email == '' or password == '' or username == '' or phone == '':
         flash('All fields are required! ')
-        return redirect(url_for('sign_up'))
+        return redirect(url_for('home.sign_up'))
     if password != password2:
         flash('Password does not match')
-        return redirect(url_for('sign_up'))
+        return redirect(url_for('home.sign_up'))
     password_hash = hashlib.sha256(password.encode()).hexdigest()
 
     user_exist = User.query.filter_by(username=username).first()
     if user_exist is not None:
         flash('Username already exists')
-        return redirect(url_for('sign_up'))
-    
+        return redirect(url_for('home.sign_up'))
+    return redirect(url_for('home.home_page'))
 
 
 @home.route('/login')
