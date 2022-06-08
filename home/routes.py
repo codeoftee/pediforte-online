@@ -34,6 +34,19 @@ def do_sign_up():
         return redirect(url_for('home.sign_up'))
     return redirect(url_for('home.home_page'))
 
+    new_user = User(username=username, email=email, password_hash=password_hash, phone=phone)
+    db.session.add(new_user)
+    db.session.commit()
+    #save session pythonbasics.org/flask-sessions/
+    session['username'] = username
+    session['password'] = password
+    session['id'] = new_user.id
+
+    response = redirect(url_for('home.home_page'))
+    response.set_cookie('user_id', str(new_user.id), max_age=timedelta(hours=24))
+
+    response.set_cookie('pw', password_hash, max_age=timedelta(hours=24))
+    return response 
 
 @home.route('/login')
 def login():
