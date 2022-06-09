@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediforte online-login</title>
+</head>
+<body>
+    <div>
+        <h2>Login</h2>
+        <p style="color: red;">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <b>{{ message }}</b>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </p>
+    <form method="post" action="/login">
+
+        <label>Email or Username <br>
+            <input type="email"  name="email" placeholder="Enter Your Email or Username">
+        </label><br>
+             <br>
+        <label>Password <br>
+            <input type="password" name="password" placeholder="password">
+          </label><br>
+             <br>
+            <br>
+    
+    
+        <input type="submit" value="submit" class="btn btn-primary">
+    
+    
+    </form>
+    </div>
+</body>
+</html>
