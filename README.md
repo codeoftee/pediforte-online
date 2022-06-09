@@ -10,3 +10,4 @@
 ## Guidelines 
 1. If `flask run` does not work, try `python -m flask run` 
 2. For login and signup check `https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins`
+3. Update git config, run `git config pull.rebase true` on command prompt
