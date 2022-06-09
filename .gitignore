@@ -1,4 +1,4 @@
-# add files that shouldn't be uploaded to git here
+# add files that shouldn't be tracked by git here. ## https://www.pluralsight.com/guides/how-to-use-gitignore-file
 
 .idea/
 venv/

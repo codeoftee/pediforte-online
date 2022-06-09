@@ -1,0 +1,16 @@
+<!--base html -->
+<!Doctype html>
+<html lang="en">
+<head>
+    <title>Pediforte Online</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+</head>
+<body>
+<p id="hey"></p>
+<img src="{{ url_for('static', filename='img/pedicon.jpg') }}">
+<script>
+    $('#hey').text("Hello World!");
+</script>
+</body>
+</html>
