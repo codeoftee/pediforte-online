@@ -86,3 +86,15 @@ def login():
 
     flash("Invalid email or password")
     return redirect(url_for('login_page'))
+
+@home.route('/logout')
+def logout():
+    # removing sessions
+    session.pop('email')
+    session.pop('password')
+    session.pop('id')                                                           
+    # removing cookies
+    resp = redirect(url_for('home'))
+    resp.set_cookie('user_id', max_age=0)
+    resp.set_cookie('pw', max_age=0)
+    return resp
