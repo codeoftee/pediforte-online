@@ -3,7 +3,6 @@ from datetime import timedelta
 from flask import render_template, request, flash, session, redirect, url_for
 import hashlib
 from werkzeug.utils import secure_filename
-from models import User
 from toolz.validators import is_valid_email
 from .models import User
 import hashlib
@@ -59,12 +58,12 @@ def do_sign_up():
     return response 
 
 @home.route('/login')
-def sign_up():
+def login():
     return render_template("login.html")
 
 
-@home.route('/login')
-def login():
+@home.route('/log-in', methods=['POST'])
+def do_login():
     email = request.form['email']
     password = request.form['password']
     password_hash = hashlib.sha256(password.encode()).hexdigest()
@@ -77,7 +76,7 @@ def login():
             session['password'] = password
             session['id'] = correct_user.id
             
-            response = redirect(url_for('admin_page'))
+            response = redirect(url_for('home_page'))
             response.set_cookie('user_id', str(correct_user.id),
                                 max_age=timedelta(hours=24))
             response.set_cookie('pw', password_hash,
@@ -85,7 +84,7 @@ def login():
             return response
 
     flash("Invalid email or password")
-    return redirect(url_for('login_page'))
+    return redirect(url_for('home.login'))
 
 @home.route('/logout')
 def logout():
@@ -94,7 +93,7 @@ def logout():
     session.pop('password')
     session.pop('id')                                                           
     # removing cookies
-    resp = redirect(url_for('home'))
+    resp = redirect(url_for('home_page'))
     resp.set_cookie('user_id', max_age=0)
     resp.set_cookie('pw', max_age=0)
     return resp
